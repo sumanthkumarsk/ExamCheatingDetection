@@ -1,0 +1,46 @@
+# ----------------------
+# FRONTEND (React + Vite)
+# ----------------------
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# ----------------------
+# BACKEND (Python)
+# ----------------------
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+
+# ----------------------
+# YOLO MODEL FILES (too large for GitHub)
+# ----------------------
+backend/model/*.pt
+
+# ----------------------
+# YOLO OUTPUT FOLDERS
+# ----------------------
+backend/runs/
+backend/uploads/
+
+# ----------------------
+# OS / Editor files
+# ----------------------
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.njsproj
+*.sln
+*.sw?
+
+# YOLOv8
+runs/
+*.pt
+*.avi
+*.mp4

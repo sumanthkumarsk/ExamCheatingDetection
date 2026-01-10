@@ -1,0 +1,24 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# YOLO / ML artifacts
+backend/model/
+backend/runs/
+backend/uploads/
+backend/output_frames/
+
+# Model weights & videos
+*.pt
+*.avi
+*.mp4
+
+# Frontend
+node_modules/
+dist/
+npm-debug.log
+.DS_Store
+
+# IDE
+.vscode/
