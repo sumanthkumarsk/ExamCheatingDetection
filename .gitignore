@@ -8,6 +8,8 @@ backend/model/
 backend/runs/
 backend/uploads/
 backend/output_frames/
+runs/
+uploads/
 
 # Model weights & videos
 *.pt

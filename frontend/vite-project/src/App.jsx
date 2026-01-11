@@ -1,287 +1,4 @@
-// import React, { useState } from "react";
-// import axios from "axios";
-// import "./App.css";
-
-// function App() {
-//   const [file, setFile] = useState(null);
-//   const [output, setOutput] = useState(null);
-//   const [mimeType, setMimeType] = useState(null);
-//   const [loading, setLoading] = useState(false);
-
-// const handleDetect = async (e) => {
-//   e.preventDefault();
-
-//   if (!file) return alert("Please upload a file!");
-
-//   setLoading(true);
-//   setOutput(null);
-
-//   const formData = new FormData();
-//   formData.append("file", file);
-
-//   try {
-//     const response = await axios.post(
-//       "http://127.0.0.1:8000/detect/",
-//       formData,
-//       { responseType: "blob" }
-//     );
-
-//     const mime = response.data.type;
-//     const url = URL.createObjectURL(new Blob([response.data], { type: mime }));
-
-//     setOutput(url);
-//     setMimeType(mime);
-
-//   } catch (error) {
-//     alert("Error detecting file!");
-//     console.error(error);
-//   } finally {
-//     setLoading(false);
-//   }
-// };
-
-
-//   const handleDetect = async (e) => {
-//   e.preventDefault();
-
-//   if (!file) return alert("Please upload a file!");
-
-//   setLoading(true);
-
-//   const formData = new FormData();
-//   formData.append("file", file);
-
-//   const response = await axios.post(
-//     "http://127.0.0.1:8000/detect-video/",
-//     formData,
-//     { responseType: "blob" }
-//   );
-
-//  const fileURL = URL.createObjectURL(response.data);
-//   setOutput(fileURL);
-//   setLoading(false);
-// };
-
-
-//   return (
-//     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white flex flex-col items-center p-6">
-
-//       <h1 className="text-5xl font-extrabold mt-8 mb-10 bg-clip-text text-transparent 
-//                      bg-gradient-to-r from-blue-400 to-purple-500 drop-shadow-lg">
-//         YOLOv8 Student Monitoring
-//       </h1>
-
-//       {/* Upload Card */}
-//       <div className="backdrop-blur-xl bg-white/10 p-8 rounded-2xl shadow-2xl border border-white/10 w-full max-w-lg transition duration-300 hover:bg-white/20">
-//         <form onSubmit={handleDetect} className="flex flex-col items-center gap-6">
-
-//           <label className="w-full">
-//             <div className="w-full h-40 border-2 border-dashed border-blue-400 rounded-xl flex flex-col justify-center items-center 
-//                             bg-white/5 hover:bg-white/10 transition cursor-pointer">
-//               <span className="text-lg">Click or Drag & Drop File</span>
-//               <span className="text-sm text-gray-300 mt-1">(Image or Video)</span>
-//             </div>
-//             <input 
-//               type="file"
-//               accept="image/*,video/*"
-//               className="hidden"
-//               onChange={(e) => setFile(e.target.files[0])}
-//             />
-//           </label>
-
-//           <button
-//             type="submit"
-//             className="w-full bg-gradient-to-r from-blue-600 to-purple-600 py-3 rounded-xl 
-//                        hover:scale-[1.02] transition font-semibold shadow-lg text-lg"
-//           >
-//             Detect
-//           </button>
-//         </form>
-//       </div>
-
-//       {/* Loading Animation */}
-//       {loading && (
-//         <div className="mt-8">
-//           <div className="animate-spin w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full"></div>
-//           <p className="mt-4 text-lg font-medium">Processing...</p>
-//         </div>
-//       )}
-
-//       {/* Output Preview */}
-//       {output && (
-//   <div className="mt-10 backdrop-blur-xl bg-white/10 p-6 rounded-2xl border border-white/10 shadow-xl max-w-2xl text-center">
-//     <h2 className="text-2xl font-bold mb-4 text-blue-300">
-//       Detection Result (Download Frames)
-//     </h2>
-
-//     <a
-//       href={output}
-//       download="detected_frames.zip"
-//       className="inline-block bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-3 rounded-xl shadow-lg transition-all duration-300"
-//     >
-//       ⬇ Download Detected Frames (ZIP)
-//     </a>
-
-//     <p className="text-sm text-blue-200 mt-4">
-//       Contains 10–20 detected images from your video.
-//     </p>
-//   </div>
-// )}
-
-
-//     </div>
-//   );
-// }
-
-// export default App;
-
-
-
-// zip
-
-
-
-// import React, { useState } from "react";
-// import axios from "axios";
-// import "./App.css";
-
-// function App() {
-//   const [file, setFile] = useState(null);
-//   const [output, setOutput] = useState(null);
-//   const [loading, setLoading] = useState(false);
-
-//   // -----------------------------
-//   // 📌 HANDLE VIDEO → ZIP DETECTION
-//   // -----------------------------
-//   const handleDetect = async (e) => {
-//     e.preventDefault();
-
-//     if (!file) return alert("Please upload a file!");
-
-//     setLoading(true);
-//     setOutput(null);
-
-//     const formData = new FormData();
-//     formData.append("file", file);
-
-//     try {
-//       const response = await axios.post(
-//         "http://127.0.0.1:8000/detect-video/",
-//         formData,
-//         { responseType: "blob" }
-//       );
-
-//       const url = URL.createObjectURL(response.data);
-//       setOutput(url);
-//     } catch (error) {
-//       console.error(error);
-//       alert("Error processing video");
-//     }
-
-//     setLoading(false);
-//   };
-
-//   return (
-//     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white flex flex-col items-center p-6">
-
-//       {/* Title */}
-//       <h1 className="text-5xl font-extrabold mt-8 mb-10 bg-clip-text text-transparent 
-//                      bg-gradient-to-r from-blue-400 to-purple-500 drop-shadow-lg">
-//         YOLOv8 Student Monitoring
-//       </h1>
-
-//       {/* ----------------------------- */}
-//       {/* 📂 UPLOAD CARD */}
-//       {/* ----------------------------- */}
-//       <div className="backdrop-blur-xl bg-white/10 p-8 rounded-2xl shadow-2xl border border-white/10 w-full max-w-lg transition duration-300 hover:bg-white/20">
-//         <form onSubmit={handleDetect} className="flex flex-col items-center gap-6">
-
-//           <label className="w-full cursor-pointer">
-//             <div className="w-full h-40 border-2 border-dashed border-blue-400 rounded-xl flex flex-col justify-center items-center 
-//                             bg-white/5 hover:bg-white/10 transition">
-//               <span className="text-lg">Click or Drag & Drop File</span>
-//               <span className="text-sm text-gray-300 mt-1">(Upload Video)</span>
-//             </div>
-//             <input 
-//               type="file"
-//               accept="video/*"
-//               className="hidden"
-//               onChange={(e) => setFile(e.target.files[0])}
-//             />
-//           </label>
-
-//           <button
-//             type="submit"
-//             className="w-full bg-gradient-to-r from-blue-600 to-purple-600 py-3 rounded-xl 
-//                        hover:scale-[1.02] transition font-semibold shadow-lg text-lg"
-//           >
-//             Detect Video
-//           </button>
-//         </form>
-//       </div>
-
-//       {/* ----------------------------- */}
-//       {/* ⏳ LOADING ANIMATION */}
-//       {/* ----------------------------- */}
-//       {loading && (
-//         <div className="mt-8">
-//           <div className="animate-spin w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full"></div>
-//           <p className="mt-4 text-lg font-medium">Processing...</p>
-//         </div>
-//       )}
-
-//       {/* ----------------------------- */}
-//       {/* 📦 ZIP OUTPUT DOWNLOAD */}
-//       {/* ----------------------------- */}
-//       {output && (
-//         <div className="mt-10 backdrop-blur-xl bg-white/10 p-6 rounded-2xl border border-white/10 shadow-xl max-w-2xl text-center">
-//           <h2 className="text-2xl font-bold mb-4 text-blue-300">
-//             Detection Result (Download Frames)
-//           </h2>
-
-//           <a
-//             href={output}
-//             download="detected_frames.zip"
-//             className="inline-block bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-3 rounded-xl shadow-lg transition-all duration-300"
-//           >
-//             ⬇ Download Detected Frames (ZIP)
-//           </a>
-
-//           <p className="text-sm text-blue-200 mt-4">
-//             Contains ~20 detected images from your video.
-//           </p>
-//         </div>
-//       )}
-
-//       {/* ----------------------------- */}
-//       {/* 🎥 LIVE CAMERA YOLO DETECTION */}
-//       {/* ----------------------------- */}
-//       <div className="mt-16 backdrop-blur-xl bg-white/10 p-6 rounded-2xl border border-white/10 shadow-xl max-w-2xl w-full text-center">
-//         <h2 className="text-2xl font-bold mb-4 text-green-300">
-//           Live Camera Detection
-//         </h2>
-
-//         <img
-//           src="http://127.0.0.1:8000/live-detect/"
-//           alt="Live YOLO detection"
-//           className="rounded-xl w-full shadow-xl"
-//         />
-
-//         <p className="text-sm text-green-200 mt-4">
-//           Real-time camera stream processed by YOLOv8.
-//         </p>
-//       </div>
-
-//     </div>
-//   );
-// }
-
-// export default App;
-
-
-
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -291,14 +8,17 @@ import {
   Video,
   Image as ImageIcon,
   AlertTriangle,
+  Activity,
   Eye,
+  Hand,
   Smartphone,
   Headphones,
-  FileText,
-  Hand,
-  Activity
+  FileText
 } from "lucide-react";
 import "./App.css";
+
+// Externalize API Base URL
+const API_BASE_URL = "http://127.0.0.1:8000";
 
 function App() {
   const [activeTab, setActiveTab] = useState("live");
@@ -310,13 +30,16 @@ function App() {
   const [isCameraLoading, setIsCameraLoading] = useState(false);
   const [systemStatus, setSystemStatus] = useState("disconnected");
 
+  // New state to hold the stable URL
+  const [liveUrl, setLiveUrl] = useState(null);
+
   // -----------------------------
   // SYSTEM HEALTH CHECK
   // -----------------------------
-  React.useEffect(() => {
+  useEffect(() => {
     const checkHealth = async () => {
       try {
-        await axios.get("http://127.0.0.1:8000/health");
+        await axios.get(`${API_BASE_URL}/health`);
         setSystemStatus("operational");
       } catch (e) {
         setSystemStatus("disconnected");
@@ -342,7 +65,7 @@ function App() {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/detect-image/",
+        `${API_BASE_URL}/detect-image/`,
         formData,
         { responseType: "blob" }
       );
@@ -366,7 +89,7 @@ function App() {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/detect-video/",
+        `${API_BASE_URL}/detect-video/`,
         formData
       );
       if (response.data.images?.length > 0) {
@@ -383,12 +106,13 @@ function App() {
 
   const stopLiveCamera = async () => {
     try {
-      await axios.post("http://127.0.0.1:8000/stop-live/");
+      await axios.post(`${API_BASE_URL}/stop-live/`);
     } catch (e) {
       console.error("Stop failed", e);
     }
     setIsLiveActive(false);
     setIsCameraLoading(false);
+    setLiveUrl(null);
   };
 
   return (
@@ -511,14 +235,15 @@ function App() {
                           </div>
                         )}
                         <img
-                          src={`http://127.0.0.1:8000/live-detect/?t=${Date.now()}`}
+                          src={liveUrl}
                           alt="Live Stream"
                           className="w-full h-full object-contain"
                           onLoad={() => setIsCameraLoading(false)}
                           onError={() => {
-                            alert("Connection lost. Stop and Start again.");
-                            setIsLiveActive(false);
-                            setIsCameraLoading(false);
+                            // Only alert if we expected it to work
+                            if (isLiveActive) {
+                              console.error("Stream error");
+                            }
                           }}
                         />
                         <div className="absolute top-4 left-4 flex gap-2 z-20">
@@ -540,6 +265,7 @@ function App() {
                         onClick={() => {
                           setIsLiveActive(true);
                           setIsCameraLoading(true);
+                          setLiveUrl(`${API_BASE_URL}/live-detect/?t=${Date.now()}`);
                         }}
                         className="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-8 py-3 rounded-xl font-bold flex items-center gap-2 transition-all hover:scale-105 shadow-[0_0_20px_rgba(16,185,129,0.3)]"
                       >
@@ -678,9 +404,9 @@ function TabButton({ active, onClick, icon: Icon, label }) {
 }
 
 function UploadArea({ type, onFileChange, loading, onUpload, selectedFile }) {
-  const [preview, setPreview] = React.useState(null);
+  const [preview, setPreview] = useState(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (selectedFile) {
       // Create preview URL
       const url = URL.createObjectURL(selectedFile);
@@ -743,8 +469,3 @@ function UploadArea({ type, onFileChange, loading, onUpload, selectedFile }) {
 }
 
 export default App;
-
-//cd student-monitoring-yolov8   cd frontend  cd vite-project  npm run dev
-//cd student-monitoring-yolov8 cd backend uvicorn app:app --reload
-
-
